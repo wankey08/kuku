@@ -1,0 +1,60 @@
+<!-- 放到 index.html 的 </head> 前面 -->
+<script defer src="/_vercel/insights/script.js"></script>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>色号查询 Color Lookup</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🎨 色号查询 Color Lookup</h1>
+  <p class="sub">支持搜索色号 / 名称 / Hex · 上传照片取色匹配最近色号<br>
+  Search by code / name / Hex · Pick a color from photo to find the closest match</p>
+</header>
+
+<div class="toolbar">
+  <input id="search" type="text" placeholder="输入色号、名称或 Hex，如：胭脂 cinnabar / H030 / #FF461F&#10;Enter code, name or Hex, e.g. cinnabar / H030 / #FF461F">
+  <div class="filters" id="filters"></div>
+</div>
+
+<section class="photo-box">
+  <h2>📷 照片取色匹配 Photo Color Match</h2>
+  <div class="photo-actions">
+    <label class="btn">
+      拍照 Take Photo
+      <input id="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+    </label>
+    <label class="btn">
+      选取照片 Choose Photo
+      <input id="photoInput" type="file" accept="image/*" hidden>
+    </label>
+    <span class="hint">上传后点击照片中的颜色，自动匹配最接近的色号<br>
+    Tap anywhere on the photo to match the closest color code</span>
+  </div>
+  <div class="photo-area" id="photoArea" hidden>
+    <canvas id="canvas"></canvas>
+    <div class="picked" id="picked" hidden>
+      <div class="picked-color" id="pickedColor"></div>
+      <div class="picked-info" id="pickedInfo"></div>
+    </div>
+  </div>
+  <div class="matches" id="matches"></div>
+</section>
+
+<section>
+  <div class="grid" id="grid"></div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  Pantone 数据为社区近似值，仅供参考；印刷请以官方实物色卡为准。<br>
+  Pantone data are community approximations for reference only; always verify with official color books for print.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
